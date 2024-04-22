@@ -20,6 +20,8 @@ interface CreateTransactionInput {
 
 interface TrasactionContextType {
   transactions: Transaction[];
+  setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
+  clearTransactions: () => void;
   fetchTransactions: (query?: string) => Promise<void>;
   createTransaction: (data: CreateTransactionInput) => Promise<void>;
 }
@@ -63,13 +65,32 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   );
 
   useEffect(() => {
-    fetchTransactions();
-  }, [fetchTransactions]);
+    const storedTransactions = sessionStorage.getItem("transactions");
+    if (storedTransactions) {
+      setTransactions(JSON.parse(storedTransactions));
+    }
+  }, []);
 
+  useEffect(() => {
+    const storedTransactions = localStorage.getItem("transactions");
+    if (storedTransactions) {
+      setTransactions(JSON.parse(storedTransactions));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions]);
+
+  const clearTransactions = () => {
+    setTransactions([]);
+  };
   return (
     <TransactionsContext.Provider
       value={{
         transactions,
+        setTransactions,
+        clearTransactions,
         fetchTransactions,
         createTransaction,
       }}
