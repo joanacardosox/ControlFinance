@@ -5,8 +5,7 @@ import { useContext } from "use-context-selector";
 import { Button } from "./ui/button";
 
 export function TransactionTable() {
-  const { transactions, fetchTransactions, clearTransactions } =
-    useContext(TransactionsContext);
+  const { transactions, clearTransactions } = useContext(TransactionsContext);
 
   return (
     <Table className="max-w-[1120px] p-9   gap-4  m-auto">

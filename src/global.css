@@ -58,11 +58,23 @@
   }
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Estilos para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
 }
 
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE e Edge */
-  scrollbar-width: none; /* Firefox */
+/* Estilos para Chrome, Edge e Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 20px;
+  border: 3px solid transparent;
 }
