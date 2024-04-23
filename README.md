@@ -1,10 +1,12 @@
-# ControlFinance - Application for controlling finances
-
+# ControlFinance 
 
 - [Installation](#installation)
 - [About](#about)
 
 ## About
+
+Aplicação onde você pode controlar suas finanças 
+
 
 ## 🚀 Installation
 
