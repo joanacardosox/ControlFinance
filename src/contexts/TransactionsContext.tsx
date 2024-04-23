@@ -18,11 +18,11 @@ interface CreateTransactionInput {
   type: "income" | "outcome";
 }
 
-interface TrasactionContextType {
+interface TransactionContextType {
   transactions: Transaction[];
+  fetchTransactions: (query?: string) => Promise<void>;
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
   clearTransactions: () => void;
-  fetchTransactions: (query?: string) => Promise<void>;
   createTransaction: (data: CreateTransactionInput) => Promise<void>;
 }
 
@@ -30,7 +30,7 @@ interface TransactionsProviderProps {
   children: ReactNode;
 }
 
-export const TransactionsContext = createContext({} as TrasactionContextType);
+export const TransactionsContext = createContext({} as TransactionContextType);
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -64,34 +64,34 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     []
   );
 
-  useEffect(() => {
-    const storedTransactions = sessionStorage.getItem("transactions");
-    if (storedTransactions) {
-      setTransactions(JSON.parse(storedTransactions));
-    }
-  }, []);
+   useEffect(() => {
+     const storedTransactions = sessionStorage.getItem("transactions");
+     if (storedTransactions) {
+       setTransactions(JSON.parse(storedTransactions));
+     }
+   }, []);
 
-  useEffect(() => {
-    const storedTransactions = localStorage.getItem("transactions");
-    if (storedTransactions) {
-      setTransactions(JSON.parse(storedTransactions));
-    }
-  }, []);
+   useEffect(() => {
+     const storedTransactions = localStorage.getItem("transactions");
+     if (storedTransactions) {
+       setTransactions(JSON.parse(storedTransactions));
+     }
+   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-  }, [transactions]);
+   useEffect(() => {
+     localStorage.setItem("transactions", JSON.stringify(transactions));
+   }, [transactions]);
 
-  const clearTransactions = () => {
-    setTransactions([]);
-  };
+   const clearTransactions = () => {
+     setTransactions([]);
+   };
   return (
     <TransactionsContext.Provider
       value={{
         transactions,
         setTransactions,
-        clearTransactions,
         fetchTransactions,
+        clearTransactions,
         createTransaction,
       }}
     >

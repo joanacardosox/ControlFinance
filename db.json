@@ -1,52 +1,12 @@
 {
   "transactions": [
     {
+      "id": 8,
       "description": "Pagamento frellancer",
       "price": 100,
       "category": "Pagamento",
       "type": "outcome",
-      "createdAt": "2024-04-20T23:18:02.036Z",
-      "id": 8
-    },
-    {
-      "description": "Sanduíche ",
-      "price": 10,
-      "category": "Alimentação",
-      "type": "outcome",
-      "createdAt": "2024-04-20T23:21:19.805Z",
-      "id": 9
-    },
-    {
-      "description": "Desenvolvimento do Site Podpah ",
-      "price": 200,
-      "category": "Pagamanto",
-      "type": "income",
-      "createdAt": "2024-04-20T23:22:14.908Z",
-      "id": 10
-    },
-    {
-      "description": "Site Sofia",
-      "price": 200,
-      "category": "Pagamento",
-      "type": "income",
-      "createdAt": "2024-04-21T22:49:37.938Z",
-      "id": 11
-    },
-    {
-      "description": "Chocolates da Páscoa ",
-      "price": 15000,
-      "category": "Alimentação ",
-      "type": "outcome",
-      "createdAt": "2024-04-21T22:52:52.077Z",
-      "id": 12
-    },
-    {
-      "description": "Lanche",
-      "price": 15,
-      "category": "Alimentação ",
-      "type": "outcome",
-      "createdAt": "2024-04-22T11:29:49.943Z",
-      "id": 13
+      "createdAt": "2024-04-20T23:18:02.036Z"
     }
   ]
 }

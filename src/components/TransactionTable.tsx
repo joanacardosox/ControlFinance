@@ -3,10 +3,10 @@ import { TransactionsContext } from "@/contexts/TransactionsContext";
 import { dataFormatter, priceFormatter } from "@/utils/formatter";
 import { useContext } from "use-context-selector";
 import { Button } from "./ui/button";
-import { Trash } from "phosphor-react";
 
 export function TransactionTable() {
-  const { transactions, clearTransactions } = useContext(TransactionsContext);
+  const { transactions, fetchTransactions, clearTransactions } =
+    useContext(TransactionsContext);
 
   return (
     <Table className="max-w-[1120px] p-9   gap-4  m-auto">
@@ -28,13 +28,15 @@ export function TransactionTable() {
                 ? dataFormatter.format(new Date(transaction.createdAt))
                 : "Invalid Date"}
             </TableCell>
+            <TableCell></TableCell>
           </TableRow>
         ))}
+
         <Button
           onClick={clearTransactions}
-          className="max-w-md m-auto text-blue-700 text-sm flex justify-items-center bg-transparent border-0 mb-4"
+          className="text-blue-700 text-sm  w-full bg-transparent border-0"
         >
-          <Trash />
+          Limpar Tabela
         </Button>
       </TableBody>
     </Table>

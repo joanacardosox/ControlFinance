@@ -5,6 +5,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContextSelector } from "use-context-selector";
 import { TransactionsContext } from "@/contexts/TransactionsContext";
+import { useState } from "react";
 
 const searchFormSchema = z.object({
   query: z.string(),
@@ -13,6 +14,8 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
 export function Search() {
+  const [newCommentText, setNewCommentText] = useState("");
+
   const fetchTransactions = useContextSelector(
     TransactionsContext,
     (context) => {
@@ -20,17 +23,20 @@ export function Search() {
     }
   );
 
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<SearchFormInputs>({
+  const { register, handleSubmit } = useForm<SearchFormInputs>({
     resolver: zodResolver(searchFormSchema),
   });
 
   async function handleSearchTransactions(data: SearchFormInputs) {
     await fetchTransactions(data.query);
   }
+
+  function handleNewCommentChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setNewCommentText(event.target.value);
+  }
+
+
+  const isNewCommentEmpty = newCommentText.length === 0;
 
   return (
     <form
@@ -41,10 +47,11 @@ export function Search() {
         type="text"
         placeholder="Busque uma transição...."
         {...register("query")}
+        onChange={handleNewCommentChange}
       />
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isNewCommentEmpty}
         className="bg-primary  disabled:cursor-not-allowed disabled:opacity-5;
 "
       >
