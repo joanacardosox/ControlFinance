@@ -2,9 +2,9 @@
 
 
 - [Installation](#installation)
-- [Sobre](#sobre)
+- [About](#about)
 
-## Sobre
+## About
 
 ## 🚀 Installation
 
