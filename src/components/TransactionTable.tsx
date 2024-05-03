@@ -7,8 +7,8 @@ export function TransactionTable() {
   const { transactions } = useContext(TransactionsContext);
 
   return (
-    <Table className="max-w-[1120px] p-9   gap-4  m-auto ">
-      <TableBody className="bg-gray-950 border">
+    <Table className="max-w-[70rem] p-9   gap-4  m-auto ">
+      <TableBody className="border">
         {transactions.map((transaction) => (
           <TableRow key={transaction.id}>
             <TableCell className="font-medium">

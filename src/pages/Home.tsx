@@ -10,7 +10,7 @@ export function Home() {
     <>
       <Header />
       <Summary />
-      <div className="bg-gray-950 mx-2.5">
+      <div className="mx-2.5">
         <Search />
         <TransactionTable />
       </div>

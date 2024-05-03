@@ -1,3 +1,12 @@
 {
-  "transactions": [{}]
+  "transactions": [
+    {
+      "id": 1,
+      "description": "pagamento do mês",
+      "type": "income",
+      "price": 20,
+      "category": "Pagamento",
+      "createdAt": "16/08/2024"
+    }
+  ]
 }
