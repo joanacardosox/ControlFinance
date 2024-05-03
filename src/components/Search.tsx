@@ -35,7 +35,6 @@ export function Search() {
     setNewCommentText(event.target.value);
   }
 
-
   const isNewCommentEmpty = newCommentText.length === 0;
 
   return (

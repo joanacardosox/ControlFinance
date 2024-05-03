@@ -20,10 +20,11 @@ interface CreateTransactionInput {
 
 interface TransactionContextType {
   transactions: Transaction[];
-  fetchTransactions: (query?: string) => Promise<void>;
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
   clearTransactions: () => void;
+  fetchTransactions: (query?: string) => Promise<void>;
   createTransaction: (data: CreateTransactionInput) => Promise<void>;
+  deleteTransaction: (id: number) => Promise<void>;
 }
 
 interface TransactionsProviderProps {
@@ -64,35 +65,49 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     []
   );
 
-   useEffect(() => {
-     const storedTransactions = sessionStorage.getItem("transactions");
-     if (storedTransactions) {
-       setTransactions(JSON.parse(storedTransactions));
-     }
-   }, []);
+  const deleteTransaction = useCallback(async (id: number) => {
+    const response = await api.delete(`transactions/${id}`, {
+      params: {
+        id,
+      },
+    });
 
-   useEffect(() => {
-     const storedTransactions = localStorage.getItem("transactions");
-     if (storedTransactions) {
-       setTransactions(JSON.parse(storedTransactions));
-     }
-   }, []);
+    setTransactions((state) =>
+      state.filter((transaction) => transaction.id !== id)
+    );
+  }, []);
 
-   useEffect(() => {
-     localStorage.setItem("transactions", JSON.stringify(transactions));
-   }, [transactions]);
+  useEffect(() => {
+    const storedTransactions = sessionStorage.getItem("transactions");
+    if (storedTransactions) {
+      setTransactions(JSON.parse(storedTransactions));
+    }
+  }, []);
 
-   const clearTransactions = () => {
-     setTransactions([]);
-   };
+  useEffect(() => {
+    const storedTransactions = localStorage.getItem("transactions");
+    if (storedTransactions) {
+      setTransactions(JSON.parse(storedTransactions));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions]);
+
+  const clearTransactions = () => {
+    setTransactions([]);
+  };
+
   return (
     <TransactionsContext.Provider
       value={{
         transactions,
         setTransactions,
-        fetchTransactions,
         clearTransactions,
+        fetchTransactions,
         createTransaction,
+        deleteTransaction,
       }}
     >
       {children}

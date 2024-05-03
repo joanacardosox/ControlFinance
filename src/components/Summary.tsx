@@ -14,7 +14,7 @@ export function Summary() {
           <CardHeader>
             <span>Saida</span>
 
-            <strong>{priceFormatter.format(summary.income)}</strong>
+            <strong>{priceFormatter.format(summary.outcome)}</strong>
 
             <ArrowCircleUp fontSize={32} color="#F75A68" />
           </CardHeader>
@@ -24,7 +24,7 @@ export function Summary() {
           <CardHeader>
             <span>Entrada</span>
 
-            <strong>{priceFormatter.format(summary.outcome)}</strong>
+            <strong>{priceFormatter.format(summary.income)}</strong>
 
             <ArrowCircleDown fontSize={32} color="#00875F" />
           </CardHeader>

@@ -1,12 +1,3 @@
 {
-  "transactions": [
-    {
-      "id": 8,
-      "description": "Pagamento frellancer",
-      "price": 100,
-      "category": "Pagamento",
-      "type": "outcome",
-      "createdAt": "2024-04-20T23:18:02.036Z"
-    }
-  ]
+  "transactions": [{}]
 }

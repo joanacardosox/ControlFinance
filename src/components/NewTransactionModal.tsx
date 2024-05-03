@@ -115,7 +115,6 @@ export function NewTransactionModal() {
             control={control}
             name="type"
             render={({ field }) => {
-              console.log(field);
               return (
                 <RadioGroup
                   onValueChange={field.onChange}
