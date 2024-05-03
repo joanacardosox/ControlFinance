@@ -2,11 +2,9 @@ import { Table, TableBody, TableCell, TableRow } from "./ui/table";
 import { TransactionsContext } from "@/contexts/TransactionsContext";
 import { dataFormatter, priceFormatter } from "@/utils/formatter";
 import { useContext } from "use-context-selector";
-import { Button } from "./ui/button";
-import { Trash } from "phosphor-react";
 
 export function TransactionTable() {
-  const { transactions, deleteTransaction } = useContext(TransactionsContext);
+  const { transactions } = useContext(TransactionsContext);
 
   return (
     <Table className="max-w-[1120px] p-9   gap-4  m-auto ">
